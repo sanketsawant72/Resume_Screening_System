@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Analysis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+
+            <!-- Main Card -->
+            <div class="card shadow-sm border-0 p-4">
+
+                <h3 class="text-center mb-3">Resume Analysis Result</h3>
+
+                <!-- Summary -->
+                <div class="mb-4">
+                    <p class="mb-1"><strong>Target Job Role:</strong> {{ job_role }}</p>
+                    <p class="mb-1"><strong>Resume Strength:</strong> {{ strength }}</p>
+                    <p class="mb-0"><strong>Match Percentage:</strong> {{ score }}%</p>
+                </div>
+
+                <hr>
+
+                <!-- Matched Skills -->
+                <div class="mb-4">
+                    <h5 class="mb-2">✅ Skills You Already Have</h5>
+
+                    {% if matched_skills %}
+                        {% for skill in matched_skills %}
+                            <span class="badge bg-success me-1 mb-1">{{ skill }}</span>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-muted">No matching skills found.</p>
+                    {% endif %}
+                </div>
+
+                <!-- Missing Skills -->
+                <div class="mb-4">
+                    <h5 class="mb-2">❌ Skills You Need to Learn</h5>
+
+                    {% if missing_skills %}
+                        {% for skill in missing_skills %}
+                            <span class="badge bg-danger me-1 mb-1">{{ skill }}</span>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-muted">Great! No missing skills.</p>
+                    {% endif %}
+                </div>
+
+                <hr>
+
+                <!-- Learning Resources -->
+                <div class="mb-4">
+                    <h5 class="mb-2">📘 Recommended Learning Resources</h5>
+
+                    {% if resources %}
+                        <ul class="ps-3">
+                            {% for skill, link in resources.items() %}
+                                <li class="mb-1">
+                                    <strong>{{ skill }}</strong> –
+                                    <a href="{{ link }}" target="_blank">Start Learning</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="text-muted">No recommendations available.</p>
+                    {% endif %}
+                </div>
+
+                <hr>
+
+                <!-- Feedback
+                <div class="mb-4">
+                    <h5 class="mb-2">🧠 AI Feedback</h5>
+                    <p>{{ feedback }}</p>
+
+                    <ul class="ps-3">
+                        {% for tip in suggestions %}
+                            <li>{{ tip }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <hr> -->
+
+                <div class="mb-4">
+                    <h5>📄 Resume Structure Feedback</h5>
+                    <ul class="ps-3">
+                        {% for item in structure_feedback %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+
+                <!-- Action -->
+                <div class="text-center">
+                    <a href="/" class="btn btn-primary px-4">
+                        Analyze Another Resume
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
